@@ -4,12 +4,13 @@ title: Printing
 permalink: /learn/quickstart/print
 ---
 
-Although a `print` statements of the type
+Although `print` statements of the type
 ```
 print *, ...
 ```
 has been used in earlier chapters, formatted printing has not been explored.
 The `*` indicates free-form, "list-directed" output.
+The `...` represents "list items", separated by `,`s.
 
 Instead of `*`, a format specification can be specified in order to control the printing of items.
 In FORTRAN 77, this was done using numbered `FORMAT` statements.
@@ -26,7 +27,7 @@ Example:
 print '("x = ", e11.4)', x
 ```
 
-## Descriptors
+## Field descriptors
 
 Descriptor | Description
 --- | ---
@@ -34,11 +35,14 @@ Descriptor | Description
 `f` | Real number ("f" for float)
 `e` | Exponential notation (mantissa in [0.1, 1))
 `es` | Scientific notation (mantissa in [1, 10))
+`g` | Automatically chooses between `f` and `e` formats
 `a` | Character
 `x` | Space
 `/` | New line
 
 Note that the descriptors can be used lowercase or uppercase.
+
+Examples of each follow.
 
 ### `i` -- Integer
 

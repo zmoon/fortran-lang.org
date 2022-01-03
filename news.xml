@@ -4,12 +4,704 @@
     <title type="text" xml:lang="en">Fortran Newsletter</title>
     <link type="application/atom+xml" href="https://fortran-lang.org/news.xml" rel="self"/>
     <link type="text" href="https://fortran-lang.org/news" rel="alternate"/>
-    <updated>2021-11-13T22:10:48+00:00</updated>
+    <updated>2022-01-03T17:02:35+00:00</updated>
     <id>/news</id>
     <author>
         <name></name>
     </author>
 
+    
+    <entry>
+        <title>Fortran-lang: 2021 in review</title>
+        <link href="https://fortran-lang.org/newsletter/2021/12/29/Fortran-lang-2021-in-review/"/>
+        <updated>2021-12-29T00:00:00+00:00</updated>
+        <id>/news/newsletter/2021/12/29/Fortran-lang-2021-in-review</id>
+        <content type="html">&lt;p&gt;With another year behind us, let’s review the progress that the
+Fortran-lang community has made.
+If you’re new to Fortran-lang, here’s a quick intro:
+We’re an open source community that aims to develop modern Fortran tooling and
+nurture a rich ecosystem of libraries, as well as to provide a friendly,
+helpful, and inclusive space for newcomers and experienced Fortran programmers
+to work together.
+We started in late 2019 and have been going ever since.
+If you’re first discovering (or re-discovering) Fortran through this article,
+welcome, and we hope it inspires you to try Fortran for one of your projects.
+In this article we summarize new developments from 2021,
+from flagship and new projects to community development and outreach.&lt;/p&gt;
+
+&lt;ul id=&quot;page-nav&quot;&gt;&lt;/ul&gt;
+
+&lt;h2 id=&quot;standard-library-stdlib&quot;&gt;Standard Library (stdlib)&lt;/h2&gt;
+
+&lt;p&gt;To date, &lt;a href=&quot;https://github.com/fortran-lang/stdlib/graphs/contributors&quot;&gt;33 people&lt;/a&gt;
+have contributed code to stdlib, and more than 100 people have participated in
+discussions.
+More than a dozen new modules have been added in 2021:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_array&lt;/code&gt;: Provides &lt;code class=&quot;highlighter-rouge&quot;&gt;trueloc&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;falseloc&lt;/code&gt; which allow you
+to index an array based on a logical condition in a functional style&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_hash&lt;/code&gt;: Provides many hash algorithms, 32- and 64-bit alike&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_math&lt;/code&gt;: Provides a number of common mathematical functions&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_random&lt;/code&gt;: Pseudo-random integer number generation&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_selection&lt;/code&gt;: Selection procedures for selecting elements from an array
+given a desired range&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_sorting&lt;/code&gt;: Sorting procedures based on Rust’s sorting algorithm and
+introsort by David Musser&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_specialfunctions&lt;/code&gt;: Provides the Legendre function and its derivative
+in support of the Gaussian quadrature procedures&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_stats_distribution_normal&lt;/code&gt;: Functions to sample values from a normal
+distribution&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_stats_distribution_uniform&lt;/code&gt;: Functions to sample values from a uniform
+distribution&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_string_type&lt;/code&gt;: Provides a &lt;code class=&quot;highlighter-rouge&quot;&gt;string_type&lt;/code&gt; derived type that alleviates
+some limitations of the variable-length &lt;code class=&quot;highlighter-rouge&quot;&gt;character&lt;/code&gt; variables. &lt;code class=&quot;highlighter-rouge&quot;&gt;string_type&lt;/code&gt;
+is compatible with all intrinsic procedures that operate on &lt;code class=&quot;highlighter-rouge&quot;&gt;character&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_stringlist_type&lt;/code&gt;: A derived type that is a 1-dimensional list of
+strings&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_strings&lt;/code&gt;: Provides a number of inquiry and manipulation procedures that
+complement the intrinsic set&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_version&lt;/code&gt;: Allows querying the version of the stdlib library build&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;which brings us to a total of 23 modules in stdlib.
+You can read about these modules in more detail on the
+&lt;a href=&quot;https://stdlib.fortran-lang.org&quot;&gt;stdlib API docs website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Besides the new modules, procedures, and derived types, there have been a few
+key improvements in terms of stdlib delivery:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You can now use stdlib as a dependency in your fpm projects,
+see &lt;a href=&quot;https://github.com/fortran-lang/stdlib#build-with-fortran-langfpm&quot;&gt;here&lt;/a&gt;.
+This significantly lowers the bar for getting started with stdlib.&lt;/li&gt;
+  &lt;li&gt;We had our first stdlib release (0.1.0) on October 4. As of now we don’t have
+a set release schedule, and plan to publish a new release when there is
+significant new functionality.
+As stdlib matures and becomes more widely used, we expect releases to become
+more frequent.&lt;/li&gt;
+  &lt;li&gt;We now maintain a
+  &lt;a href=&quot;https://github.com/fortran-lang/stdlib/blob/HEAD/CHANGELOG.md&quot;&gt;change log&lt;/a&gt; where every change to the API is documented.
+  This is a useful document to reference when you want to know what’s been
+  added to the stdlib since the latest release.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you haven’t tried stdlib yet, please do and let us know what you think
+and how we can improve it.
+Our vision for stdlib is to provide basic utilities that most Fortran projects use,
+as well as wider numerical capabilities with the scope of NumPy and SciPy.&lt;/p&gt;
+
+&lt;h2 id=&quot;fortran-package-manager-fpm&quot;&gt;Fortran Package Manager (fpm)&lt;/h2&gt;
+
+&lt;p&gt;Fortran Package Manager (fpm) is the package manager and build system for
+Fortran.
+Its key goal is to make developing, distributing, and reusing Fortran
+libraries and applications as easy and as fun as possible.
+In 2020, the big change for fpm was the transition from the prototype
+implemented in Haskell to a pure Fortran implementation.
+Fpm has since been used in increasingly more and ever larger Fortran projects.&lt;/p&gt;
+
+&lt;p&gt;To date, &lt;a href=&quot;https://github.com/fortran-lang/fpm/graphs/contributors&quot;&gt;22 people&lt;/a&gt;
+have contributed code to fpm.
+In 2021 fpm has advanced from v0.1.3 to v0.5.0.
+Key additions this year include (release version in parentheses):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CLI arguments for linker, archiver, and C compiler (0.5.0)&lt;/li&gt;
+  &lt;li&gt;Support for MPI and LFortran (0.4.0)&lt;/li&gt;
+  &lt;li&gt;Support for installed library modules via &lt;code class=&quot;highlighter-rouge&quot;&gt;external-modules&lt;/code&gt; in the manifest
+(0.3.0)&lt;/li&gt;
+  &lt;li&gt;Automatic discovery of manifest files in parent directories (0.3.0)&lt;/li&gt;
+  &lt;li&gt;Support for reading package version from file (0.3.0)&lt;/li&gt;
+  &lt;li&gt;Support for include directories (0.2.0)&lt;/li&gt;
+  &lt;li&gt;Support for &lt;code class=&quot;highlighter-rouge&quot;&gt;--flag&lt;/code&gt; CLI option to specify compiler flags (0.2.0)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fpm build --show-model&lt;/code&gt; displays the internal representation of a package
+(0.1.4)&lt;/li&gt;
+  &lt;li&gt;Allow hyphen in new package names (0.1.4)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fpm new&lt;/code&gt; now supports &lt;code class=&quot;highlighter-rouge&quot;&gt;--full&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;--bare&lt;/code&gt; to specify level of scaffolding
+(0.1.4)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Check out also these fpm plugins:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/brocolis/fpm-search&quot;&gt;fpm-search&lt;/a&gt;:
+Adds the &lt;code class=&quot;highlighter-rouge&quot;&gt;fpm search&lt;/code&gt; command for searching for registered fpm packages from
+the command line.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/urbanjost/fpm-man&quot;&gt;fpm-man&lt;/a&gt;:
+Adds the &lt;code class=&quot;highlighter-rouge&quot;&gt;fpm man&lt;/code&gt; command for displaying man-style help pages about Fortran
+intrinsics and other language features.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At the time of writing, there are almost 200 projects now using fpm.
+If you haven’t tried fpm yet, please do!
+It has truly been a game-changing tool for many of us.&lt;/p&gt;
+
+&lt;p&gt;We have many ideas that we want to pursue, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;First-class integration with other package managers such as Spack and Conda&lt;/li&gt;
+  &lt;li&gt;First-class integration with build systems like CMake and Meson&lt;/li&gt;
+  &lt;li&gt;Improving &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;fpm’s package registry&lt;/a&gt;, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We are always looking for new contributors.
+If any of these projects interest you, please join us.&lt;/p&gt;
+
+&lt;h2 id=&quot;lfortran&quot;&gt;LFortran&lt;/h2&gt;
+
+&lt;center&gt;
+&lt;a href=&quot;https://lfortran.org&quot;&gt;
+&lt;img src=&quot;/assets/img/Fortran-lang-2021-in-review/lfortran-logo-300x300.png&quot; /&gt;
+&lt;/a&gt;
+&lt;/center&gt;
+
+&lt;p&gt;Though not technically a Fortran-lang project,
+&lt;a href=&quot;https://lfortran.org&quot;&gt;LFortran&lt;/a&gt; has been growing close to the Fortran-lang
+community and projects largely thanks to its creator and lead developer 
+&lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej Čertík&lt;/a&gt; also being one of the founding
+members of Fortran-lang.
+LFortran has been developing rapidly this year and was released as a
+&lt;a href=&quot;https://lfortran.org/blog/2021/09/lfortran-minimum-viable-product-mvp/&quot;&gt;Minimum Viable Product (MVP)&lt;/a&gt; in September.
+LFortran currently parses all of Fortran 2018 and compiles a significant
+subset of the language.
+16 people have contributed code so far, and many more have reported bugs or participated in discussions.
+If you haven’t tried LFortran yet, please do and let us know how it can best
+improve for your use case.
+You can help speed up LFortran’s development by contributing code and/or
+documentation directly, or by donating funds to the project via
+&lt;a href=&quot;https://numfocus.org/project/lfortran&quot;&gt;NumFOCUS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Follow LFortran on Twitter at &lt;a href=&quot;https://twitter.com/lfortranorg&quot;&gt;@lfortranorg&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;fortran-langorg-discourse-and-social-media&quot;&gt;fortran-lang.org, Discourse, and social media&lt;/h2&gt;
+
+&lt;p&gt;A major addition to the Fortran website this year is the
+&lt;a href=&quot;https://fortran-lang.org/learn/best_practices&quot;&gt;Fortran Best Practices mini-book&lt;/a&gt;.
+This is a port and an update to the well-known
+&lt;a href=&quot;https://www.fortran90.org&quot;&gt;fortran90.org&lt;/a&gt; by
+&lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej Čertík&lt;/a&gt;.
+It provides a plethora of tips on how to write simple and idiomatic Fortran
+for numerical tasks, and how to avoid some common gotchas.
+Give it a read and let us know how it can be improved.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://fortran-lang.discourse.group&quot;&gt;Fortran Discourse&lt;/a&gt; is as active
+as ever, with new users joining daily.
+There are currently 338 active users out of a total of 537 registered users.
+The Fortran Discourse is a great place to ask for help with Fortran code, post
+a Fortran job opening, and discuss anything Fortran-related.&lt;/p&gt;
+
+&lt;p&gt;We also continue to release the monthly newsletter where we
+document the progress month-by-month, as well as post about any notable events
+in the Fortran world.
+This newsletter is a great way to stay up to date with Fortran-lang.
+If you’re also on Twitter, follow our account
+&lt;a href=&quot;https://twitter.com/fortranlang&quot;&gt;@fortranlang&lt;/a&gt; for daily bite-size news and
+updates, as well as the new &lt;a href=&quot;https://twitter.com/FortranTip&quot;&gt;@FortranTip&lt;/a&gt;
+account, managed by &lt;a href=&quot;https://github.com/beliavsky&quot;&gt;Beliavsky&lt;/a&gt;, which brings
+daily Fortran tips to your Twitter feed.&lt;/p&gt;
+
+&lt;p&gt;Finally, we meet on monthly video calls to discuss issues and topics related to all
+Fortran-lang projects.
+The calls are advertised on Fortran Discourse and are open to everyone.
+Don’t hesitate to join the call to meet other Fortran-lang participants and take part
+in different discussions.&lt;/p&gt;
+&lt;h2 id=&quot;new-projects&quot;&gt;New projects&lt;/h2&gt;
+
+&lt;p&gt;In addition to the flagship projects summarized above, a few new projects
+started or were adopted by Fortran-lang this year.&lt;/p&gt;
+
+&lt;h3 id=&quot;fftpack&quot;&gt;fftpack&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fftpack&quot;&gt;fftpack&lt;/a&gt; is a classic collection of
+subroutines to perform the Fast Fourier Transform on real and complex data.
+It is based on the classic
+&lt;a href=&quot;http://www.netlib.org/fftpack/&quot;&gt;FFTPACK library from Netlib&lt;/a&gt;.
+fftpack was adopted by Fortran-lang in an effort to provide:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A community-maintained FFT library&lt;/li&gt;
+  &lt;li&gt;Bug fixes to the existing codebase&lt;/li&gt;
+  &lt;li&gt;Modern interfaces on top of the existing API&lt;/li&gt;
+  &lt;li&gt;fpm package for easy use as a dependency.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;test-drive&quot;&gt;test-drive&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/test-drive&quot;&gt;Test-drive&lt;/a&gt; is a simple and 
+easy-to-use testing framework developed by
+&lt;a href=&quot;https://github.com/awvwgk&quot;&gt;Sebastian Ehlert&lt;/a&gt;.
+It follows a simple functional style to collect and run your tests in parallel
+and print a minimal and clean diagnostic printout to the standard output. 
+Test-drive is currently used by both stdlib and fpm for their own test suites.
+Give test-drive a test drive for your next Fortran project!&lt;/p&gt;
+
+&lt;h3 id=&quot;fpm-docs&quot;&gt;fpm-docs&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm-docs&quot;&gt;fpm-docs&lt;/a&gt; is a brand new user
+documentation website for fpm, developed by
+&lt;a href=&quot;https://github.com/awvwgk&quot;&gt;Sebastian Ehlert&lt;/a&gt;.
+Its key aim is to provide community-maintained documentation across four
+target audiences/use cases:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Tutorials&lt;/strong&gt;: for learning how to use fpm for Fortran development&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;How-to guides&lt;/strong&gt;: recipes for specific and concrete problems&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Design documents&lt;/strong&gt;: resources that document the design of various aspects of
+fpm&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;References&lt;/strong&gt;: specification documents of fpm components&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;center&gt;
+&lt;a href=&quot;https://fpm.fortran-lang.org&quot;&gt;
+&lt;img src=&quot;/assets/img/Fortran-lang-2021-in-review/fpm-docs.png&quot; width=&quot;100%&quot; /&gt;
+&lt;/a&gt;
+&lt;/center&gt;
+
+&lt;p&gt;As the fpm user docs are now hosted at
+&lt;a href=&quot;https://fpm.fortran-lang.org&quot;&gt;fpm.fortran-lang.org&lt;/a&gt;, the API docs are now
+located at &lt;a href=&quot;https://fortran-lang.github.io/fpm/&quot;&gt;fortran-lang.github.io/fpm/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;google-summer-of-code-2021&quot;&gt;Google Summer of Code 2021&lt;/h2&gt;
+
+&lt;p&gt;2021 has been the first year for Fortran-lang to participate in the
+&lt;a href=&quot;https://summerofcode.withgoogle.com/&quot;&gt;Google Summer of Code&lt;/a&gt; program.
+Together with NumFOCUS and LFortran, Fortran-lang had six students who worked on a 
+variety of projects:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Aman-Godara&quot;&gt;Aman Godara&lt;/a&gt; (Improving strings in stdlib)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/chetankarwa&quot;&gt;Chetan Karwa&lt;/a&gt; (Linked lists in stdlib)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/czgdp1807&quot;&gt;Gagandeep Singh&lt;/a&gt; (Arrays and allocatables in LFortran)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/kubajj&quot;&gt;Jakub Jelínek&lt;/a&gt; (Compiler arguments in fpm)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rgoswami.me/&quot;&gt;Rohit Goswami&lt;/a&gt; (Compiling dftatom with LFortran)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Thirumalai-Shaktivel&quot;&gt;Thirumalai Shaktivel&lt;/a&gt; (AST generation in LFortran)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can read in more detail about their projects
+&lt;a href=&quot;https://summerofcode.withgoogle.com/archive/2021/organizations/6542461173760000&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A big thank you to all students, mentors, and administrators, for their great
+work, and of course, to the Google Summer of Code program for making
+possible for students to participate.&lt;/p&gt;
+
+&lt;p&gt;We plan to apply for Google Summer of Code in 2022 as well.
+The program is no longer limited to students and anybody 18 or older can apply
+to work on an open source project and get paid for it.
+If you’re interested participating in the program in 2022 with Fortran-lang,
+don’t hesitate to contact us and we’ll guide you toward applying.&lt;/p&gt;
+
+&lt;h2 id=&quot;conferences-and-papers&quot;&gt;Conferences and papers&lt;/h2&gt;
+
+&lt;h3 id=&quot;fortrancon-2021&quot;&gt;FortranCon 2021&lt;/h3&gt;
+
+&lt;p&gt;Like in 2020, the Fortran event of this year was
+&lt;a href=&quot;https://tcevents.chem.uzh.ch/event/14/&quot;&gt;FortranCon 2021&lt;/a&gt;, the international
+Fortran conference, held on September 23-24.
+The keynote speaker this year was &lt;a href=&quot;https://github.com/rouson&quot;&gt;Damian Rouson&lt;/a&gt;,
+the head of the
+&lt;a href=&quot;https://crd.lbl.gov/divisions/amcr/computer-science-amcr/class/&quot;&gt;Computer Languages and Systems Software (CLaSS)&lt;/a&gt;
+group at the Lawrence Berkeley National Lab. 
+Fortran-lang had a dedicated session (a Fortran-lang minisymposium) on the
+second day of the conference, with the talks about specific Fortran-lang
+projects as well as the Google Summer of Code student presentations.
+FortranCon was hosted at the University of Zurich (UZH), and organized by
+&lt;a href=&quot;https://github.com/dev-zero&quot;&gt;Tiziano Müller&lt;/a&gt; from UZH and
+&lt;a href=&quot;https://github.com/alazzaro&quot;&gt;Alfio Lazzaro&lt;/a&gt; from Hewlett-Packard Enterprise.
+You can watch all FortranCon 2021 talks &lt;a href=&quot;https://www.youtube.com/playlist?list=PLeKbr7eYHjt5UaV9zQtY24oEbne9_uFni&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;packagingcon-2021&quot;&gt;PackagingCon 2021&lt;/h3&gt;
+
+&lt;p&gt;Another big event for Fortran-lang was
+&lt;a href=&quot;https://packaging-con.org/&quot;&gt;PackagingCon 2021&lt;/a&gt;, a conference dedicated to
+package management software and its community of developers.
+&lt;a href=&quot;https://github.com/awvwgk&quot;&gt;Sebastian Ehlert&lt;/a&gt; presented fpm–you can watch the
+recording below:&lt;/p&gt;
+
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/YG8zEM1lAVM&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;h3 id=&quot;papers&quot;&gt;Papers&lt;/h3&gt;
+
+&lt;p&gt;This year two papers have been written about Fortran-lang projects.
+The first paper documents the motivation and goals of
+Fortran-lang: “Toward Modern Fortran Tooling and a Thriving Developer
+Community” by Milan Curcic, Ondřej Čertík, Brad Richardson, Sebastian Ehlert,
+Laurence Kedward, Arjen Markus, Ivan Pribec, and Jérémie Vandenplas
+(&lt;a href=&quot;https://arxiv.org/abs/2109.07382&quot;&gt;https://arxiv.org/abs/2109.07382&lt;/a&gt;).&lt;/p&gt;
+
+&lt;center&gt;
+&lt;a href=&quot;https://arxiv.org/abs/2109.07382&quot;&gt;
+&lt;img width=&quot;600&quot; src=&quot;/assets/img/Fortran-lang-2021-in-review/fortran-lang-paper.png&quot; /&gt;
+&lt;/a&gt;
+&lt;/center&gt;
+
+&lt;p&gt;If Fortran-lang has been helpful in your work and if you want to cite this paper,
+here’s the citation info:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bibtex&quot;&gt;@article{curcic2021toward,
+  title={Toward Modern Fortran Tooling and a Thriving Developer Community},
+  author={Curcic, Milan and
+          {\v{C}}ert{\'\i}k, Ond{\v{r}}ej and
+          Richardson, Brad and
+          Ehlert, Sebastian and
+          Kedward, Laurence and
+          Markus, Arjen and
+          Pribec, Ivan and
+          Vandenplas, J{\'e}r{\'e}mie},
+  journal={arXiv preprint arXiv:2109.07382},
+  year={2021}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We have also submitted a paper draft to IEEE’s
+&lt;a href=&quot;https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5992&quot;&gt;Computing in Science &amp;amp; Engineering (CiSE)&lt;/a&gt;
+journal, titled “The State of Fortran” and led by
+&lt;a href=&quot;https://github.com/lkedward&quot;&gt;Laurence Kedward&lt;/a&gt;.
+For this paper, we have
+&lt;a href=&quot;https://fortran-lang.discourse.group/t/fortran-lang-community-paper/1232&quot;&gt;publicly invited on Discourse&lt;/a&gt;
+anybody in the Fortran-lang community to participate.
+Once published, this will be another paper that you can cite.
+Stay tuned for its publication.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2021 is behind us as another productive year.&lt;/li&gt;
+  &lt;li&gt;Fortran-lang flagship projects such as
+&lt;a href=&quot;https://github.com/fortran-lang/stdlib&quot;&gt;stdlib&lt;/a&gt;,
+&lt;a href=&quot;https://github.com/fortran-lang/fpm&quot;&gt;fpm&lt;/a&gt;,
+&lt;a href=&quot;https://fortran-lang.org&quot;&gt;fortran-lang.org&lt;/a&gt;, and
+&lt;a href=&quot;https://lfortran.org&quot;&gt;LFortran&lt;/a&gt; continue to grow and gain traction.&lt;/li&gt;
+  &lt;li&gt;New Fortran-lang projects include
+&lt;a href=&quot;https://github.com/fortran-lang/fftpack&quot;&gt;fftpack&lt;/a&gt;,
+&lt;a href=&quot;https://github.com/fortran-lang/test-drive&quot;&gt;test-drive&lt;/a&gt;, and
+&lt;a href=&quot;https://github.com/fortran-lang/fpm-docs&quot;&gt;fpm-docs&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Fortran-lang participated in the
+&lt;a href=&quot;https://summerofcode.withgoogle.com/&quot;&gt;Google Summer of Code&lt;/a&gt; program for
+the first time, and had 6 students working on projects across stdlib, fpm,
+and LFortran.&lt;/li&gt;
+  &lt;li&gt;We had several presentations of Fortran-lang projects at
+&lt;a href=&quot;https://www.youtube.com/playlist?list=PLeKbr7eYHjt5UaV9zQtY24oEbne9_uFni&quot;&gt;FortranCon 2021&lt;/a&gt; and
+&lt;a href=&quot;https://www.youtube.com/watch?v=YG8zEM1lAVM&quot;&gt;PackagingCon 2021&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;New Fortran-lang &lt;a href=&quot;https://arxiv.org/abs/2109.07382&quot;&gt;paper&lt;/a&gt; is out and 
+another is in review.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;thanks&quot;&gt;Thanks&lt;/h2&gt;
+
+&lt;p&gt;We thank all people who contributed to Fortran-lang projects and discussions
+on GitHub, Fortran Discourse, Fortran-lang mailing list, Twitter, and 
+elsewhere.
+It wouldn’t have been possible without you all.&lt;/p&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;program&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fortran_lang_2021&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+    </entry>
+    
+    <entry>
+        <title>Fortran newsletter: December 2021</title>
+        <link href="https://fortran-lang.org/newsletter/2021/12/01/Fortran-Newsletter-December-2021/"/>
+        <updated>2021-12-01T00:00:00+00:00</updated>
+        <id>/news/newsletter/2021/12/01/Fortran-Newsletter-December-2021</id>
+        <content type="html">&lt;p&gt;Welcome to the December 2021 edition of the monthly Fortran newsletter.
+The newsletter comes out at the beginning of every month and details
+Fortran news from the previous month.&lt;/p&gt;
+
+&lt;ul id=&quot;page-nav&quot;&gt;&lt;/ul&gt;
+
+&lt;h2 id=&quot;fortran-langorg&quot;&gt;fortran-lang.org&lt;/h2&gt;
+
+&lt;p&gt;Here’s what’s new and ongoing in the fortran-lang.org repo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/pull/348&quot;&gt;#348&lt;/a&gt;:
+Fix typo in author field&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;work-in-progress&quot;&gt;Work in progress&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/pull/347&quot;&gt;#347&lt;/a&gt; (WIP):
+Fortran Intrinsics&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/pull/201&quot;&gt;#201&lt;/a&gt; (WIP):
+Internationalization for fortran-lang&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt;
+if you have any suggestions for the website and its content.
+We welcome any new contributors to the website and the tutorials page in particular - see the
+&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt;
+for how to get started.&lt;/p&gt;
+
+&lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
+
+&lt;p&gt;Here’s what’s new in stdlib:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/558&quot;&gt;#558&lt;/a&gt;:
+Pin specific fpm version&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/556&quot;&gt;#556&lt;/a&gt;:
+fix some FORD links&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/494&quot;&gt;#494&lt;/a&gt;:
+Add testing module to allow better structuring of test suites&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/562&quot;&gt;#562&lt;/a&gt;:
+Minor update &lt;code class=&quot;highlighter-rouge&quot;&gt;pure/elemental&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;string_type&lt;/code&gt; module&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/565&quot;&gt;#565&lt;/a&gt;:
+Make support for quadruple precision optional&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/566&quot;&gt;#566&lt;/a&gt;:
+Create a call for reviewers pull request template&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/578&quot;&gt;#578&lt;/a&gt;:
+Update error in case fypp preprocessor is not found&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/579&quot;&gt;#579&lt;/a&gt;:
+Add module for handling version information of stdlib&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;work-in-progress-1&quot;&gt;Work in progress&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/581&quot;&gt;#581&lt;/a&gt; (WIP):
+Add routines for saving/loading arrays in npy format&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/580&quot;&gt;#580&lt;/a&gt; (WIP):
+Add terminal and color escape sequences&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/573&quot;&gt;#573&lt;/a&gt; (WIP):
+Revised Hash functions incorporating changes in the main Stdlib repository.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/552&quot;&gt;#552&lt;/a&gt; (WIP):
+fixed bug in stringlist&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/536&quot;&gt;#536&lt;/a&gt; (WIP):
+Fix conversion warnings&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/520&quot;&gt;#520&lt;/a&gt; (WIP):
+[stdlib_io] add &lt;code class=&quot;highlighter-rouge&quot;&gt;disp&lt;/code&gt;(display variable values formatted).&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/517&quot;&gt;#517&lt;/a&gt; (WIP):
+adding SPEC_TEMPLATE.md #504&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/514&quot;&gt;#514&lt;/a&gt; (WIP):
+pop, drop &amp;amp; get with basic range feature for stringlist&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/500&quot;&gt;#500&lt;/a&gt; (WIP):
+Selection algorithms&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/499&quot;&gt;#499&lt;/a&gt; (WIP):
+[stdlib_linalg] matrix property checks&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/498&quot;&gt;#498&lt;/a&gt; (WIP):
+[stdlib_math] add &lt;code class=&quot;highlighter-rouge&quot;&gt;arg/argd/argpi&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/491&quot;&gt;#491&lt;/a&gt; (WIP):
+Stdlib linked list&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/488&quot;&gt;#488&lt;/a&gt; (WIP):
+[stdlib_math] add &lt;code class=&quot;highlighter-rouge&quot;&gt;is_close&lt;/code&gt; routines.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/473&quot;&gt;#473&lt;/a&gt; (WIP):
+Error stop improvements&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/363&quot;&gt;#363&lt;/a&gt; (WIP):
+Sorting string’s characters according to their ASCII values&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/353&quot;&gt;#353&lt;/a&gt; (WIP):
+Initial checkin for a module for tolerant comparison of reals&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/286&quot;&gt;#286&lt;/a&gt; (WIP):
+Probability Distribution and Statistical Functions – Beta Distribution Module&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/278&quot;&gt;#278&lt;/a&gt; (WIP):
+Probability Distribution and Statistical Functions – Gamma Distribution Module&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/276&quot;&gt;#276&lt;/a&gt; (WIP):
+Probability Distribution and Statistical Functions – Exponential Distribution Module&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/273&quot;&gt;#273&lt;/a&gt; (WIP):
+Probability Distribution and Statistical Functions – Normal Distribution Module&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/189&quot;&gt;#189&lt;/a&gt; (WIP):
+Initial implementation of COO / CSR sparse format&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please help improve stdlib by testing and &lt;a href=&quot;https://github.com/fortran-lang/stdlib/issues?q=is%3Apr+is%3Aopen+label%3A%22reviewers+needed%22&quot;&gt;reviewing pull requests&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;The candidate for file system operations to be included in stdlib is being developed by
+&lt;a href=&quot;https://github.com/MarDiehl&quot;&gt;@MarDiehl&lt;/a&gt; and &lt;a href=&quot;https://github.com/arjenmarkus&quot;&gt;@arjenmarkus&lt;/a&gt;
+in &lt;a href=&quot;https://github.com/MarDiehl/stdlib_os&quot;&gt;this repository&lt;/a&gt;.
+Please try it out and let us know how it works, if there are any issues, or if the API can be improved.&lt;/p&gt;
+
+&lt;h2 id=&quot;fortran-package-manager&quot;&gt;Fortran Package Manager&lt;/h2&gt;
+
+&lt;p&gt;Here’s what’s new in fpm:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/releases/tag/v0.5.0&quot;&gt;v0.5.0&lt;/a&gt;:
+Alpha release update&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/598&quot;&gt;#598&lt;/a&gt;:
+Update README.md compiler, archiver, &amp;amp; link flags&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/569&quot;&gt;#569&lt;/a&gt;:
+Add workflow for continuous delivery&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/602&quot;&gt;#602&lt;/a&gt;:
+fix(fpm_compiler): intel windows release flag was incorrect&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/607&quot;&gt;#607&lt;/a&gt;:
+Repair –list option and correct obsolete descriptions of the –list option&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/612&quot;&gt;#612&lt;/a&gt;:
+Fix modules listing (for install)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/613&quot;&gt;#613&lt;/a&gt;:
+Add: critical section to mkdir in backend&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/616&quot;&gt;#616&lt;/a&gt;:
+Add: workflow to make installer on push and release&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/614&quot;&gt;#614&lt;/a&gt;:
+Bump version to 0.5.0&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/setup-fpm/pull/7&quot;&gt;setup-fpm#7&lt;/a&gt;:
+Fix Latest Option&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;work-in-progress-2&quot;&gt;Work in progress&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/622&quot;&gt;#622&lt;/a&gt; (WIP):
+Cleanup the backend output&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/608&quot;&gt;#608&lt;/a&gt; (WIP):
+–env switch lets you specify the prefix of the compiler-related environment variables&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/539&quot;&gt;#539&lt;/a&gt; (WIP):
+Add parent packages into dependency tree&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm/pull/498&quot;&gt;#498&lt;/a&gt; (WIP):
+Compiler flags profiles&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fpm&lt;/code&gt; is still in early development and we need as much help as we can get.
+Here’s how you can help today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/main/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt;
+to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/main/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt;
+to learn what are all the things that you can specify in the fpm.toml file.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
+  &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Improve the documentation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The short-term goal of fpm is to make development and installation of Fortran packages with dependencies easier.
+Its long term goal is to build a rich and decentralized ecosystem of Fortran packages and create a healthy
+environment in which new open source Fortran projects are created and published with ease.&lt;/p&gt;
+
+&lt;h2 id=&quot;compilers&quot;&gt;Compilers&lt;/h2&gt;
+
+&lt;h3 id=&quot;flang&quot;&gt;Flang&lt;/h3&gt;
+
+&lt;p&gt;Recent development updates:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OpenMP
+    &lt;ul&gt;
+      &lt;li&gt;Use the ultimate symbol in a call to the IsPointer function&lt;/li&gt;
+      &lt;li&gt;Add parsing/sema/serialization for ‘bind’ clause.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;FIR
+    &lt;ul&gt;
+      &lt;li&gt;Add base of the FIR to LLVM IR pass&lt;/li&gt;
+      &lt;li&gt;Add various FIR to LLVM IR conversion patterns:
+        &lt;ul&gt;
+          &lt;li&gt;fir.unreachable&lt;/li&gt;
+          &lt;li&gt;fir.insert_on_range&lt;/li&gt;
+          &lt;li&gt;fir.zero_bits&lt;/li&gt;
+          &lt;li&gt;fir.select and fir.select_rank&lt;/li&gt;
+          &lt;li&gt;fir.extract_value and fir.insert_value&lt;/li&gt;
+          &lt;li&gt;types - fir.box, fir.logical, fir.char, fir.ptr&lt;/li&gt;
+          &lt;li&gt;fir.box_rank, fir.box_addr, fir.box_dims, fir.box_elesize&lt;/li&gt;
+          &lt;li&gt;fir.convert&lt;/li&gt;
+          &lt;li&gt;fir.call&lt;/li&gt;
+          &lt;li&gt;fir.store and fir.load&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Add substr information to fircg.ext_embox and fircg.ext_rebox operations&lt;/li&gt;
+      &lt;li&gt;Use notifyMatchFailure in fir.zero_bits conversion&lt;/li&gt;
+      &lt;li&gt;Restrict array type on fir.insert_on_range&lt;/li&gt;
+      &lt;li&gt;Add test for FIR types conversion&lt;/li&gt;
+      &lt;li&gt;Use contralized values for indexing box&lt;/li&gt;
+      &lt;li&gt;Add complex operations conversion from FIR LLVM IR&lt;/li&gt;
+      &lt;li&gt;Add TargetRewrite pass and TargetRewrite: Rewrite COMPLEX values&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Runtime
+    &lt;ul&gt;
+      &lt;li&gt;Read environment variables directly&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;flang-omp-report
+    &lt;ul&gt;
+      &lt;li&gt;Removed unnecessary comments in flang-omp-report plugin tests&lt;/li&gt;
+      &lt;li&gt;Remove the loop workarounds for nowait clause&lt;/li&gt;
+      &lt;li&gt;Add flang-omp-report summarising script&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Checks for pointers to intrinsic functions&lt;/li&gt;
+  &lt;li&gt;Fold SPREAD&lt;/li&gt;
+  &lt;li&gt;Improve error message for misuse of NULL(mold) as data statement constant&lt;/li&gt;
+  &lt;li&gt;Fix crash on “call system_clock(count_max=j)”&lt;/li&gt;
+  &lt;li&gt;Fix combined folding of FINDLOC/MAXLOC/MINLOC&lt;/li&gt;
+  &lt;li&gt;Implement GET_ENVIRONMENT_VARIABLE(VALUE)&lt;/li&gt;
+  &lt;li&gt;Remove builder that takes SSA value instead of Attribute on ExtractValueOp, InsetValueOp, and InsertOnRangeOp&lt;/li&gt;
+  &lt;li&gt;Remove getModel&amp;lt;Fortran::ISO::CFI_dim_t&amp;gt; in DescriptorModel.h&lt;/li&gt;
+  &lt;li&gt;Set the addendum when establishing pointer section in descriptor&lt;/li&gt;
+  &lt;li&gt;Fix error in characteristics check at procedure pointer assignment&lt;/li&gt;
+  &lt;li&gt;Initial parsing/sema for ‘align’ clause&lt;/li&gt;
+  &lt;li&gt;Don’t reference non-invariant symbols in shape expressions&lt;/li&gt;
+  &lt;li&gt;Make subscript list argument a nullable pointer&lt;/li&gt;
+  &lt;li&gt;Distinguish error/warning cases for bad jumps into constructs&lt;/li&gt;
+  &lt;li&gt;Fix folding of EPSILON()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Call notes are recorded and available upon request &lt;a href=&quot;https://docs.google.com/document/d/10T-S2J3GrahpG4Ooif93NSTz2zBW0MQc_RlwHi0-afY&quot;&gt;here&lt;/a&gt;. Please contact Alexis Perry-Holby at aperry@lanl.gov for document access.&lt;/p&gt;
+
+&lt;h3 id=&quot;lfortran&quot;&gt;LFortran&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;32 Merge Requests merged in November 2021&lt;/li&gt;
+  &lt;li&gt;Support for same name interface and subroutine/function&lt;/li&gt;
+  &lt;li&gt;Compile-time evaluation for bit intrinsics&lt;/li&gt;
+  &lt;li&gt;Implement the &lt;code class=&quot;highlighter-rouge&quot;&gt;repeat&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;shape&lt;/code&gt; intrinsics&lt;/li&gt;
+  &lt;li&gt;Variadic support for &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;max&lt;/code&gt; intrinsics&lt;/li&gt;
+  &lt;li&gt;Implement the scalar &lt;code class=&quot;highlighter-rouge&quot;&gt;random_number&lt;/code&gt; function&lt;/li&gt;
+  &lt;li&gt;Fixes and improved error message for &lt;code class=&quot;highlighter-rouge&quot;&gt;read&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;write&lt;/code&gt; statements&lt;/li&gt;
+  &lt;li&gt;Support the &lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;intrinsic&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; attributes&lt;/li&gt;
+  &lt;li&gt;Implement the &lt;code class=&quot;highlighter-rouge&quot;&gt;ieee_arithmetic&lt;/code&gt; intrinsic module&lt;/li&gt;
+  &lt;li&gt;Support for the &lt;code class=&quot;highlighter-rouge&quot;&gt;abstract&lt;/code&gt; class&lt;/li&gt;
+  &lt;li&gt;Support for &lt;code class=&quot;highlighter-rouge&quot;&gt;assignment(=)&lt;/code&gt; on &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt; statement&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We are looking for new contributors. Please do not hesitate to contact us if
+you are interested. We will help you get up to speed.&lt;/p&gt;
+
+&lt;h2 id=&quot;events&quot;&gt;Events&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sebastian Ehlert presented the Fortran Package Manager at the PackagingCon 2021 conference.
+You can watch the recording below:
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/YG8zEM1lAVM&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Recordings of all FortranCon 2021 presentations are now available to view in
+the &lt;a href=&quot;https://www.youtube.com/playlist?list=PLeKbr7eYHjt5UaV9zQtY24oEbne9_uFni&quot;&gt;FortranCon YouTube Channel&lt;/a&gt;.
+Enjoy!&lt;/li&gt;
+  &lt;li&gt;We had our 20th Fortran Monthly call on November 15.
+You can watch the recording below:
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/S2kKwmg8OjE&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As usual, subscribe to the &lt;a href=&quot;https://groups.io/g/fortran-lang&quot;&gt;mailing list&lt;/a&gt; and/or
+join the &lt;a href=&quot;https://fortran-lang.discourse.group&quot;&gt;Discourse&lt;/a&gt; to stay tuned with the future meetings.&lt;/p&gt;
+
+&lt;h2 id=&quot;contributors&quot;&gt;Contributors&lt;/h2&gt;
+
+&lt;p&gt;We thank everybody who contributed to fortran-lang in the past month by
+commenting in any of these repositories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib&quot;&gt;fortran-lang/stdlib&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib-cmake-example&quot;&gt;fortran-lang/stdlib-cmake-example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm&quot;&gt;fortran-lang/fpm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;fortran-lang/fpm-registry&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/setup-fpm&quot;&gt;fortran-lang/setup-fpm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fpm-haskell&quot;&gt;fortran-lang/fpm-haskell&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org&quot;&gt;fortran-lang/fortran-lang.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/benchmarks&quot;&gt;fortran-lang/benchmarks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-forum-article-template&quot;&gt;fortran-lang/fortran-forum-article-template&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/fortran-lang/fftpack&quot;&gt;fortran-lang/fftpack&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/j3-fortran/fortran_proposals&quot;&gt;j3-fortran/fortran_proposals&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div id=&quot;gh-contributors&quot; data-startdate=&quot;November 01 2021&quot; data-enddate=&quot;November 30 2021&quot; height=&quot;500px&quot;&gt;&lt;/div&gt;
+</content>
+    </entry>
     
     <entry>
         <title>Fortran newsletter: November 2021</title>
@@ -47,7 +739,7 @@ Internationalization for fortran-lang&lt;/li&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt;
 if you have any suggestions for the website and its content.
 We welcome any new contributors to the website and the tutorials page in particular - see the
-&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt;
+&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt;
 for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
@@ -375,7 +1067,7 @@ Draft: Internationalization for fortran-lang&lt;/li&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt;
 if you have any suggestions for the website and its content.
 We welcome any new contributors to the website and the tutorials page in particular - see the
-&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt;
+&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt;
 for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
@@ -522,8 +1214,8 @@ Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt;
-to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt;
+    &lt;p&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt;
+to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt;
 to learn what are all the things that you can specify in the fpm.toml file.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
@@ -707,7 +1399,7 @@ Internationalization for fortran-lang&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -822,7 +1514,7 @@ Compiler flags profiles&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -1090,7 +1782,7 @@ Draft: Internationalization for fortran-lang&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -1215,7 +1907,7 @@ Draft - Compiler flags profiles&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -1345,7 +2037,7 @@ Draft: Internationalization for fortran-lang&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -1466,7 +2158,7 @@ Draft - Compiler flags profiles&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -1584,7 +2276,7 @@ Internationalization for fortran-lang&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -1675,7 +2367,7 @@ Plugin alpha version&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -1857,7 +2549,7 @@ Transferring fortran90.org “Fortran Best Practise” into a mini-book&lt;/li&g
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -1970,7 +2662,7 @@ Refactor: use objects to represent compilers and archiver&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -2184,7 +2876,7 @@ Include learn resources to online courses&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -2307,7 +2999,7 @@ Separate repository for the Haskell fpm version&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -2555,7 +3247,7 @@ Correct subtitle of setting up your os&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -2639,7 +3331,7 @@ Update run subcommand&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -2775,7 +3467,7 @@ We are searching for a representative Fortran code snippet for the website and a
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -2875,7 +3567,7 @@ Update: fpm_backend with dynamic openmp scheduling&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -3012,7 +3704,7 @@ Add links to fpm contributing guidelines&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -3150,7 +3842,7 @@ Update subcommand “new” to reflect the addition of support for examples&lt;/
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse existing &lt;em&gt;fpm&lt;/em&gt; packages on the &lt;a href=&quot;https://fortran-lang.org/packages/fpm&quot;&gt;fortran-lang website&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
@@ -3264,7 +3956,7 @@ In-depth introduction for Fortran with Make.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -3342,7 +4034,7 @@ Please try it out and let us know how it works, if there are any issues, or if t
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
+  &lt;li&gt;Use it and let us know what you think! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm, and the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/manifest-reference.md&quot;&gt;manifest reference&lt;/a&gt; to learn what are all the things that you can specify in the fpm.toml file.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -3487,7 +4179,7 @@ Updating the mini-book on building programs.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -3542,7 +4234,7 @@ Please try it out and let us know how it works, if there are any issues, or if t
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
+  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -3687,7 +4379,7 @@ discussed in &lt;a href=&quot;https://github.com/fortran-lang/benchmarks/issues&
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -3759,7 +4451,7 @@ Please try it out and let us know how it works, if there are any issues, or if t
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
+  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -3905,7 +4597,7 @@ discussed in &lt;a href=&quot;https://github.com/fortran-lang/benchmarks/issues&
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -3937,7 +4629,7 @@ Implementing internal dependencies and build backend in the Fortran fpm&lt;/li&g
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
+  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm and submit it to the &lt;a href=&quot;https://github.com/fortran-lang/fpm-registry&quot;&gt;Registry&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -4093,7 +4785,7 @@ discussed in &lt;a href=&quot;https://github.com/fortran-lang/benchmarks/issues&
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;fortran-standard-library&quot;&gt;Fortran Standard Library&lt;/h2&gt;
 
@@ -4136,7 +4828,7 @@ We merged several pull requests toward the Fortran fpm implementation. The Haske
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
+  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -4286,7 +4978,7 @@ See the corresponding community poll and discussion on &lt;a href=&quot;https://
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/issues&quot;&gt;Let us know&lt;/a&gt; if you have any suggestions for the website and its content.
-We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/master/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
+We welcome any new contributors to the website and the tutorials page in particular - see the &lt;a href=&quot;https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md&quot;&gt;contributor guide&lt;/a&gt; for how to get started.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Did you know&lt;/strong&gt; you don’t need to know HTML or any fancy languages to contribute to the website;
 all of the online tutorials and most of the website content are written in &lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;markdown&lt;/a&gt;, a simple markup language for formatting text - don’t worry if you haven’t used it before, it’s very easy to pick up!&lt;/p&gt;
@@ -4338,7 +5030,7 @@ Minor improvements to the README.&lt;/li&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
+  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -4474,7 +5166,7 @@ that uses this functionality.&lt;/p&gt;
 Here’s how you can help today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
+  &lt;li&gt;Try to use it. Does it work? No? Let us know! Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;fpm packaging guide&lt;/a&gt; to learn how to build your package with fpm.&lt;/li&gt;
   &lt;li&gt;Browse the &lt;a href=&quot;https://github.com/fortran-lang/fpm/issues&quot;&gt;open issues&lt;/a&gt; and see if you can help implement any fixes or features.&lt;/li&gt;
   &lt;li&gt;Adapt your Fortran package for fpm.&lt;/li&gt;
   &lt;li&gt;Improve the documentation.&lt;/li&gt;
@@ -4506,10 +5198,10 @@ join the &lt;a href=&quot;https://fortran-lang.discourse.group&quot;&gt;Discours
 Virtual participation is enabled for both attendees and speakers.
 Registration is free and due by June 1, 2020.
 There are quite a few submissions from the fortran-lang community:
-A talk on &lt;a href=&quot;https://github.com/fortran-lang/talks/tree/master/FortranCon2020-stdlib&quot;&gt;stdlib&lt;/a&gt; by Jeremie Vandenplas,
-one about the &lt;a href=&quot;https://github.com/fortran-lang/talks/tree/master/FortranCon2020-fpm&quot;&gt;Fortran Package Manager (fpm)&lt;/a&gt; by Brad Richardson,
+A talk on &lt;a href=&quot;https://github.com/fortran-lang/talks/tree/HEAD/FortranCon2020-stdlib&quot;&gt;stdlib&lt;/a&gt; by Jeremie Vandenplas,
+one about the &lt;a href=&quot;https://github.com/fortran-lang/talks/tree/HEAD/FortranCon2020-fpm&quot;&gt;Fortran Package Manager (fpm)&lt;/a&gt; by Brad Richardson,
 a talk on &lt;a href=&quot;https://gitlab.com/lfortran/talks/fortrancon-2020-talk&quot;&gt;LFortran compiler&lt;/a&gt; by Ondřej Čertík,
-as well as one about &lt;a href=&quot;https://github.com/fortran-lang/talks/tree/master/FortranCon2020-community&quot;&gt;building the Fortran community&lt;/a&gt;
+as well as one about &lt;a href=&quot;https://github.com/fortran-lang/talks/tree/HEAD/FortranCon2020-community&quot;&gt;building the Fortran community&lt;/a&gt;
 by Milan Curcic.&lt;/li&gt;
   &lt;li&gt;J3/WG5 joint meeting, originally slated for October 12-16 in Las Vegas, Nevada, has been &lt;a href=&quot;https://mailman.j3-fortran.org/pipermail/j3/2020-May/012034.html&quot;&gt;cancelled&lt;/a&gt;.
 However, the work on proposals for the Fortran Standard doesn’t stop.
@@ -4570,12 +5262,12 @@ Please help us make them better!&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/172&quot;&gt;#172&lt;/a&gt;
 New function &lt;code class=&quot;highlighter-rouge&quot;&gt;cov&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;stdlib_experimental_stats&lt;/code&gt; module to compute covariance of array elements.
-Read the full specification &lt;a href=&quot;https://github.com/fortran-lang/stdlib/blob/master/src/stdlib_experimental_stats.md#cov---covariance-of-array-elements&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+Read the full specification &lt;a href=&quot;https://github.com/fortran-lang/stdlib/blob/HEAD/src/stdlib_experimental_stats.md#cov---covariance-of-array-elements&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/168&quot;&gt;#168&lt;/a&gt;
 Specify recommended order of attributes for dummy arguments in the 
-&lt;a href=&quot;https://github.com/fortran-lang/stdlib/blob/master/STYLE_GUIDE.md&quot;&gt;Stdlib style guide&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;https://github.com/fortran-lang/stdlib/blob/HEAD/STYLE_GUIDE.md&quot;&gt;Stdlib style guide&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://github.com/fortran-lang/stdlib/pull/173&quot;&gt;#173&lt;/a&gt;
@@ -4605,7 +5297,7 @@ Specifically:&lt;/p&gt;
   &lt;li&gt;Currently only gfortran is supported as the compiler backend. FPM will suport other compilers soon.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/master/PACKAGING.md&quot;&gt;FPM packaging guide&lt;/a&gt;
+&lt;p&gt;Read the &lt;a href=&quot;https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md&quot;&gt;FPM packaging guide&lt;/a&gt;
 to learn how to build your package with FPM.&lt;/p&gt;
 
 &lt;p&gt;FPM is still in very early development, and we need as much help as we can get.
